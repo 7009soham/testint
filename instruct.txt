@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Demo</title>
+</head>
+<body>
+<h1>Hello from Docker 🚀</h1>
+</body>
+</html>
+ 
+1.use niginx as a base image
+2. setup work directory
+3. Remove default nginx static files
+4. Copy our custom website
+5. Expose port 80
+6. Run nginx in foreground
+
+
+_-----------task2
+
+Trigger the workflow on push to the main branch
+Checkout the latest code from the main branch
+Set up Docker Buildx for image building
+Configure AWS credentials using GitHub Secrets
+Login to Amazon ECR using AWS CLI
+Build the Docker image from the project
+Tag the image with v<version> and latest
+Push the Docker image to Amazon ECR
+Logout from Docker
+
+
+- name: Configure AWS credentials
+    uses: aws-actions/configure-aws-credentials@v1
+    with:
+      aws-access-key-id: '${{ secrets.AWS_ACCESS_KEY_ID }}'
+      aws-secret-access-key: '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
+      aws-region: us-west-1
+      mask-aws-account-id: 'no'
+  - name: Login to Amazon ECR
+    id: login-ecr
+    uses: aws-actions/amazon-ecr-login@v1.3.3
